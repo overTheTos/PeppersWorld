@@ -5,7 +5,7 @@
         <title>jQTodo &beta;</title>
         <script src="jqtouch/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
         <style type="text/css" media="screen">@import "themes/css/apple.css";</style>
-        <style type="text/css" media="screen">
+        <!-- <style type="text/css" media="screen">
             div#jqt ul li {
                 background-color: #ffeab1;
                 font-family: "Marker Felt";
@@ -71,6 +71,28 @@
                 border-bottom: 1px solid #9d7062;
                 border-top: 1px solid #9d7062;
             }
+        </style> -->
+        <style type="text/css" media="screen">div#jqt .toolbar .btn {
+                -webkit-border-radius: 5px;
+                -webkit-border-image: none;
+                display: block;
+                background: rgba(40, 29, 25, .4) none !important;
+                padding: 6px;
+                border: 1px solid #372823;
+                float: left;
+                color: #fff;
+                -webkit-box-shadow: rgba(255,255,255, .4) 0 1px 0;
+                text-decoration: none;
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                font-size: 13px;
+                text-shadow: #000 0 -1px 0;
+                display: inline;
+            }
+            div#jqt .btn.active {
+                background-color: rgba(0,0,0,.5);
+            }
         </style>
         <script src="cordova-2.7.0.js" type="text/javascript" charset="utf-8"></script>
         
@@ -113,9 +135,22 @@
         <div id="jqt">
             <div id="home" selected="true" class="edgetoedge form">
                 <div class="toolbar">
-                    <h1>Todos</h1>
-                    <a href="#add" class="btn2 slideup">Add</a>
+                    <h1>Peppers World</h1>
+                    <a href="#about" class="btn slideup">About</a>
                 </div>
+                <div class="scroll">
+                	<h2>Find By Region</h2>
+                	<ul class="rounded">
+                		<li><a href="#northAmerica">North America</a></li>
+                		<li><a href="#southAmerica">South America</a></li>
+                		<li><a href="#europe">Europe</a></li>
+                		<li><a href="#asia">Asia</a></li>
+                		<li><a href="#africa">Africa</a></li>
+                		<li><a href="#australia">Australia</a></li>
+                	</ul>
+                </div>
+                
+               
                 <form>
                 <ul class="incomplete">
                     <li><input type="checkbox" /> <span>Do something</span> <small><a href="#">Blah</a></small></li>
@@ -129,19 +164,32 @@
                 </ul>
                 </form>
             </div>
-            <div id="add" class="edit">
+            
+            <!-- NORTH AMERICA PAGE -->
+            <div id="northAmerica">
+            	<div class="toolbar">
+        	        <h1>North Amer.</h1>
+    	            <a class="back" href="#home">Back</a>
+                </div>
+                <div class="scroll">
+                	<h2>North America</h2>
+                	<ul class="rounded">
+                		<li>test pepper</li>
+                	</ul>
+                </div>
+            </div>
+            
+            <!-- ABOUT PAGE -->
+            <div id="about">
                 <form>
                     <div class="toolbar">
-                        <h1>New Todo</h1>
-                        <a href="#" class="btn2 goback">Cancel</a>
+                        <h1>About Peppers World</h1>
+                        <a class="back" href="#home">Home</a>
                     </div>
-                    <ul class="rounded">
-                        <li><input type="text" id="todo" placeholder="Enter your todo..." /></li>
-                        <!-- <li><textarea id="description" placeholder="Descripton"></textarea></li> -->
-                    </ul>
-                    <a href="#" class="whiteButton" style="margin: 10px">Add</a>
+                    <textarea>Fatto dal pero</textarea>
                 </form>
             </div>
+            
         </div>
     </body>
 </html>
