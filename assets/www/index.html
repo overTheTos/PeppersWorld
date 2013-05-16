@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>jQTodo &beta;</title>
         <script src="jqtouch/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-        <style type="text/css" media="screen">@import "themes/css/apple.css";</style>
+        <style type="text/css" media="screen">@import "themes/css/jqtouch.css";</style>
         <!-- <style type="text/css" media="screen">
             div#jqt ul li {
                 background-color: #ffeab1;
@@ -72,7 +72,8 @@
                 border-top: 1px solid #9d7062;
             }
         </style> -->
-        <style type="text/css" media="screen">div#jqt .toolbar .btn {
+        <style type="text/css" media="screen">
+        	div#jqt .toolbar .btn {
                 -webkit-border-radius: 5px;
                 -webkit-border-image: none;
                 display: block;
@@ -93,6 +94,15 @@
             div#jqt .btn.active {
                 background-color: rgba(0,0,0,.5);
             }
+            /* #jqt  > .edgetoedge, #jqt > * {
+                background: #333333 none;
+            }
+            #jqt h1, #jqt h2 {
+			  font: bold 18px "Helvetica Neue", Helvetica;
+			  margin: 10px 20px 6px;
+			  color: red;
+			  text-shadow: #eeeeee 0 1px 0;
+			} */
         </style>
         <script src="cordova-2.7.0.js" type="text/javascript" charset="utf-8"></script>
         
@@ -102,32 +112,6 @@
             var jQT = $.jQTouch({
                 icon: 'icon.png',
                 startupScreen: 'startup.png'
-            });
-            // Some sample Javascript functions:
-            $(function(){
-                function submitForm(){
-                    $el = $('#add form');
-                    if ($('#todo', $el).val().length > 1) {
-                        var itemid = $('#home ul li').length + 1;
-                        $('#home .incomplete').append($('<li><input type="checkbox" /> <span>' + $('#todo', $el).val() + '</span></li>'));
-                    }
-                    jQT.goBack();
-                    $el.get(0).reset();
-                    return false;
-                }
-                $('#add form').submit(submitForm);
-                $('#add .whiteButton').click(submitForm);
-                $('.complete li, .incomplete li').bind('swipe', function(){
-                   $(this).toggleClass('editingmode');
-                });
-                $('input[type="checkbox"]').live('change', function(){
-                    var $el = $(this);
-                    if ($el.attr('checked')) {
-                        $el.parent().prependTo('.complete');
-                    } else {
-                        $el.parent().appendTo('.incomplete');
-                    }
-                });
             });
         </script>
     </head>
@@ -159,20 +143,6 @@
                 		<li class="arrow"><a href="#growPeppers"><img width="70" src="watering_can.png" />&nbsp;How To Grow Peppers</a></li>
                 	</ul>
                 </div>
-                
-               
-                <form>
-                <ul class="incomplete">
-                    <li><input type="checkbox" /> <span>Do something</span> <small><a href="#">Blah</a></small></li>
-                    <li><input type="checkbox" /> <span>Do something else</span></li>
-                    <li><input type="checkbox" /> <span>Finish these damn demos</span></li>
-                </ul>
-                <h4>Completed</h4>
-                <ul class="complete">
-                    <li><input type="checkbox" checked /> <span>Do something</span></li>
-                    <li><input type="checkbox" checked /> <span>Write eblast</span></li>
-                </ul>
-                </form>
             </div>
             
             <!-- NORTH AMERICA PAGE -->
