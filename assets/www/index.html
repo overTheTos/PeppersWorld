@@ -94,15 +94,41 @@
             div#jqt .btn.active {
                 background-color: rgba(0,0,0,.5);
             }
-            /* #jqt  > .edgetoedge, #jqt > * {
-                background: #333333 none;
+            div#jqt ul li {
+            	background-color: rgb(210, 0, 0);
+            }
+            #jqt  > .edgetoedge, #jqt > * {
+                background: #eee none;
             }
             #jqt h1, #jqt h2 {
-			  font: bold 18px "Helvetica Neue", Helvetica;
-			  margin: 10px 20px 6px;
-			  color: red;
-			  text-shadow: #eeeeee 0 1px 0;
-			} */
+				  color: #d20000;
+				  text-shadow: #280000 0 -1px 0;
+			}
+            /* Custom Tags */
+            div.paragraph {
+            	color: #CCCCCC;
+            	font: 14px "Helvetica Neue", Helvetica;
+			    margin: 10px 20px 6px;
+			    color: #aaabad;
+			    text-shadow: #343535 0 -1px 0;
+            }
+            /* to be tested... */
+            div.toolbar-bottom{
+	            position: absolute;
+				z-index: 2;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 48px;
+				background-color: #222;
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
+				background-image: -moz-linear-gradient(top, #999, #666 2%, #222);
+				background-image: -o-linear-gradient(top, #999, #666 2%, #222);
+				padding: 0;
+				border-top: 1px solid #444;
+			}
+            
+            
         </style>
         <script src="cordova-2.7.0.js" type="text/javascript" charset="utf-8"></script>
         
@@ -122,6 +148,9 @@
                     <h1>Peppers World</h1>
                     <a href="#about" class="btn slideup">About</a>
                 </div>
+                <!-- <div class="toolbar-bottom">
+                	<h1>Peppers World Bottom Toolbar</h1>
+                </div> -->
                 <div class="scroll">
                 	<h2>Find By Region</h2>
                 	<ul class="rounded">
@@ -143,6 +172,7 @@
                 		<li class="arrow"><a href="#growPeppers"><img width="70" src="watering_can.png" />&nbsp;How To Grow Peppers</a></li>
                 	</ul>
                 </div>
+                
             </div>
             
             <!-- NORTH AMERICA PAGE -->
@@ -250,10 +280,29 @@
     	            <a class="back" href="#home">Back</a>
                 </div>
                 <div class="scroll">
-                	<h2>How To Grow Peppers</h2>
-                	<ul class="rounded">
-                		<li class="arrow">1.000.000</li>
-                	</ul>
+                	<div class="paragraph">Pepper choices—ranging from crispy sweet to fiery hot, from big and blocky to long and skinny—increase each year. This native American vegetable is second only to tomatoes as a garden favorite, and it needs much the same care. Peppers are also ideal for spot planting around the garden. The brilliant colors of the mature fruit are especially attractive in flower beds and in container plantings. New varieties of bell peppers are released every year, in mature colors ranging from bright red to orange to white, purple, and nearly black. If you've had past problems with diseases such as tobacco mosaic virus or bacterial spot, choose disease-resistant varieties.</div>
+                	<h2>Planting</h2>
+					<div class="paragraph">Choose a site with full sun for your pepper plot. Don't plant peppers where tomatoes or eggplants grew previously, because all three are members of the nightshade family and are subject to similar diseases. Make sure the soil drains well; standing water encourages root rot.
+					Garden centers offer a good variety of transplants, but the choices are greater when you grow peppers from seed. Pepper roots don't like to be disturbed, so plant them indoors in peat pots two months before the last frost date, sowing three seeds to a pot. Maintain the soil temperature at 75°F, and keep the seedlings moist, but not wet. Provide at least 5 hours of strong sunlight a day, or ideally, keep the plants under lights for 12 or more hours daily. Once the seedlings are 2 to 3 inches tall, thin them by leaving the strongest plant in each pot and cutting the others off at soil level.
+					Seedlings are ready for the garden when they are 4 to 6 inches tall. Before moving the young plants to the garden, harden them off for about a week. Peppers are very susceptible to transplant "shock," which can interrupt growth for weeks. To avoid shocking the plants, make sure the soil temperature is at least 60°F before transplanting; this usually occurs 2 to 3 weeks after the last frost. Transplant on a cloudy day or in the evening to reduce the danger of sun scorch; if this is not possible, provide temporary shade for the transplanted seedlings.
+					When buying transplants, look for ones with strong stems and dark green leaves. Pass up those that already have tiny fruits on them, because such plants won't produce well. Peppers take at least 2 months from the time the plants are set out to the time they produce fruit, so short-season growers should select early-maturing cultivars.
+					Space transplants about 1½ feet apart in rows at least 2 feet apart, keeping in mind that most hot-pepper cultivars need less room than sweet ones. If the plot is exposed to winds, stake the plants, but put these supports in place before transplanting the seedlings to keep from damaging roots. To deter cutworms, place a cardboard collar around each stem, pushing it at least an inch into the ground. If the weather turns chilly and rainy, protect young plants with hotcaps.</div>
+					<h2>Growing guidelines</h2>
+					<div class="paragraph">Evenly moist soil is essential to good growth, so spread a thick but light mulch, such as straw or grass clippings, around the plants. Water deeply during dry spells to encourage deep root development. Lack of water can produce bitter-tasting peppers. To avoid damaging the roots, gently pull any invading weeds by hand.
+					Although peppers are tropical plants, temperatures over 90°F often cause blossoms to drop and plants to wilt. To avoid this problem, plan your garden so taller plants will shade the peppers during the hottest part of the day. If you plant peppers in properly prepared soil, fertilizing usually isn't necessary. Pale leaves and slow growth, however, are a sign that the plants need a feeding of liquid fertilizer, such as fish emulsion or compost tea. Learn more about compost tea.</div>
+					<h2>Problems</h2>
+					<div class="paragraph">Since sprays of ground-up hot peppers can deter insects, it's logical that pests don't usually bother pepper plants. There are, however, a few exceptions. The pepper weevil, a 1/8-inch-long, brass-colored beetle with a brown or black snout, and its ¼-inch-long larva, a white worm with a beige head, chew holes in blossoms and buds, causing misshapen and discolored fruits. It's a common pest across the southern United States. Prevent damage by keeping the garden free of crop debris. Hand pick any weevils you spot on the plants.
+					Other occasional pests include aphids, Colorado potato beetles, flea beetles, hornworms, and cutworms. See the Top Ten Garden Pests page for information on these insect pests and how to control them.
+					Crop rotation and resistant cultivars are your best defense against most pepper diseases. Here are some common diseases to watch for:
+					Anthracnose infection causes dark, sunken, soft, and watery spots on fruits.
+					Bacterial spot appears as small, yellow-green raised spots on young leaves and dark spots with light-colored centers on older leaves.
+					Early blight appears as dark spots on leaves and stems; infected leaves eventually die.
+					Verticillium wilt appears first on lower leaves, which turn yellow and wilt.
+					Mosaic—the most serious disease—is a viral infection that mottles the leaves of young plants with dark and light splotches and eventually causes them to curl and wrinkle. Later on, mosaic can cause fruits to become bumpy and bitter.
+					See the Pepper Problems for more information on some of these diseases and control measures.</div>
+					<h2>Harvesting</h2>
+					<div class="paragraph">Most sweet peppers become even sweeter when mature as they turn from green to bright red, yellow, or orange—or even brown or purple. Mature hot peppers offer an even greater variety of rainbow colors, often on the same plant, and achieve their best flavor when fully grown. Early in the season, however, it's best to harvest peppers before they ripen to encourage the plant to keep bearing; a mature fruit can signal a plant to stop production.
+					Always cut (don't pull) peppers from the plant. Pick all the fruit when a frost is predicted, or pull plants up by the roots and hang them in a dry, cool place indoors for the fruit to ripen more fully. To preserve, freeze peppers (without blanching), or dry hot types.</div>
                 </div>
             </div>
             
