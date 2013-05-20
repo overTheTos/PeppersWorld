@@ -94,6 +94,70 @@
                 icon: 'icon.png',
                 startupScreen: 'startup.png'
             });
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+            function onDeviceReady() {
+            	checkConnection();
+            	
+            	var pWDB = window.openDatabase("PWDB", "1.0", "Peppers World DB", 1000000);
+            	pWDB.transaction(populateDB, errorDB, successDB);
+            	
+            	$.getJSON('http://peppersworld.altervista.org/get_data.php', function(remoteData){
+            		  console.log(remoteData)
+            		})
+            		
+            	
+            }
+            
+            function checkConnection() {
+            	var networkState = navigator.network.connection.type;
+            	var states = {};
+            	states[Connection.UNKNOWN] = 'Unknown connection';
+            	states[Connection.ETHERNET] = 'Ethernet connection';
+            	states[Connection.WIFI] = 'WiFi connection';
+            	states[Connection.CELL_2G] = 'Cell 2G connection';
+            	states[Connection.CELL_3G] = 'Cell 3G connection';
+            	states[Connection.CELL_4G] = 'Cell 4G connection';
+            	states[Connection.NONE] = 'No network connection';
+            	alert('Connection type: ' + states[networkState]);
+            }
+            
+            function populateDB(tx) {
+            	tx.executeSql('DROP TABLE IF EXISTS regions');
+            	tx.executeSql('CREATE TABLE IF NOT EXISTS regions (region_id unique, region_name)');
+            	tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES (1, "North America")');
+            	tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES (2, "South America")');
+            	tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES (3, "Europe")');
+            }
+            
+            function errorDB(err) {
+            	alert("Error processing SQL: "+err.code);
+            }
+
+            function successDB() {
+            	alert("Processing SQL successfully.");
+            	/* var pWDB = window.openDatabase("PWDB", "1.0", "Peppers World DB", 1000000);
+            	pWDB.transaction(queryDB, errorDB); */
+            }
+            
+            /* function queryDB(tx) {
+           		tx.executeSql('SELECT * FROM regions', [], querySuccess, errorCB);
+           	} */
+           	// Query the success callback
+           	//
+           	function querySuccess(tx, results) {
+	           	//first get the number of rows in the result set
+	           	var len = results.rows.length;
+	           	var status = document.getElementById("status");
+	           	var string = "Rows: " +len+"<br/>";
+	           	for (var i=0;i<len;i++){
+	           	string += results.rows.item(i).name + "<br/>";
+	           	}
+	           	//status.innerHTML = string;
+	           	alert(string);
+           	}
+            
         </script>
     </head>
     <body>
@@ -107,6 +171,7 @@
                 	<h1>Peppers World Bottom Toolbar</h1>
                 </div> 
                 <div class="scroll">
+                	<div id="status"></div>
                 	<h2>Find By Region</h2>
                 	<ul class="rounded">
                 		<li class="arrow"><a href="#northAmerica">North America</a></li>
