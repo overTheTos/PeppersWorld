@@ -1,342 +1,597 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>jQTodo &beta;</title>
-        <script src="jqtouch/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
-        <style type="text/css" media="screen">@import "themes/css/jqtouch.css";</style>
-        <style type="text/css" media="screen">
-        	div#jqt .toolbar {
-				background: #5eab34; /* Old browsers */
-				background: -moz-linear-gradient(top,  #5eab34 0%, #5eab34 50%, #569c30 51%, #569c30 100%); /* FF3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5eab34), color-stop(50%,#5eab34), color-stop(51%,#569c30), color-stop(100%,#569c30)); /* Chrome,Safari4+ */
-				background: -webkit-linear-gradient(top,  #5eab34 0%,#5eab34 50%,#569c30 51%,#569c30 100%); /* Chrome10+,Safari5.1+ */
-				background: -o-linear-gradient(top,  #5eab34 0%,#5eab34 50%,#569c30 51%,#569c30 100%); /* Opera 11.10+ */
-				background: -ms-linear-gradient(top,  #5eab34 0%,#5eab34 50%,#569c30 51%,#569c30 100%); /* IE10+ */
-				background: linear-gradient(to bottom,  #5eab34 0%,#5eab34 50%,#569c30 51%,#569c30 100%); /* W3C */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eab34', endColorstr='#569c30',GradientType=0 ); /* IE6-9 */
-			}
-			div#jqt .toolbar .btn {
-                -webkit-border-radius: 5px;
-                -webkit-border-image: none;
-                display: block;
-                background: rgba(40, 29, 25, .4) none !important;
-                padding: 6px;
-                border: 1px solid #372823;
-                float: left;
-                color: #fff;
-                -webkit-box-shadow: rgba(255,255,255, .4) 0 1px 0;
-                text-decoration: none;
-                position: absolute;
-                top: 5px;
-                right: 10px;
-                font-size: 13px;
-                text-shadow: #000 0 -1px 0;
-                display: inline;
-            }
-            div#jqt .btn.active {
-                background-color: rgba(0,0,0,.5);
-            }
-			div#jqt ul li  a{
-            	color: #373737;
-				text-shadow: none;
-				background-color: #fefefe;
-			}
-            #jqt  > .edgetoedge, #jqt > * {
-                background: rgb(21,96,57); /* Old browsers */
-				background: -moz-linear-gradient(top,  rgba(21,96,57,1) 0%, rgba(23,98,59,1) 4%, rgba(22,97,56,1) 5%, rgba(25,97,57,1) 7%, rgba(23,100,58,1) 9%, rgba(24,99,56,1) 12%, rgba(28,101,58,1) 13%, rgba(26,101,58,1) 15%, rgba(29,102,57,1) 15%, rgba(26,102,56,1) 16%, rgba(29,102,57,1) 16%, rgba(31,102,58,1) 20%, rgba(37,109,59,1) 31%, rgba(36,109,56,1) 32%, rgba(40,110,58,1) 32%, rgba(39,112,57,1) 37%, rgba(43,113,59,1) 38%, rgba(42,113,57,1) 39%, rgba(48,117,60,1) 45%, rgba(49,119,57,1) 50%, rgba(54,123,60,1) 54%, rgba(65,131,59,1) 71%, rgba(67,133,61,1) 72%, rgba(70,134,60,1) 76%, rgba(68,135,58,1) 77%, rgba(71,135,61,1) 77%, rgba(80,144,60,1) 100%); /* FF3.6+ */
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(21,96,57,1)), color-stop(4%,rgba(23,98,59,1)), color-stop(5%,rgba(22,97,56,1)), color-stop(7%,rgba(25,97,57,1)), color-stop(9%,rgba(23,100,58,1)), color-stop(12%,rgba(24,99,56,1)), color-stop(13%,rgba(28,101,58,1)), color-stop(15%,rgba(26,101,58,1)), color-stop(15%,rgba(29,102,57,1)), color-stop(16%,rgba(26,102,56,1)), color-stop(16%,rgba(29,102,57,1)), color-stop(20%,rgba(31,102,58,1)), color-stop(31%,rgba(37,109,59,1)), color-stop(32%,rgba(36,109,56,1)), color-stop(32%,rgba(40,110,58,1)), color-stop(37%,rgba(39,112,57,1)), color-stop(38%,rgba(43,113,59,1)), color-stop(39%,rgba(42,113,57,1)), color-stop(45%,rgba(48,117,60,1)), color-stop(50%,rgba(49,119,57,1)), color-stop(54%,rgba(54,123,60,1)), color-stop(71%,rgba(65,131,59,1)), color-stop(72%,rgba(67,133,61,1)), color-stop(76%,rgba(70,134,60,1)), color-stop(77%,rgba(68,135,58,1)), color-stop(77%,rgba(71,135,61,1)), color-stop(100%,rgba(80,144,60,1))); /* Chrome,Safari4+ */
-				background: -webkit-linear-gradient(top,  rgba(21,96,57,1) 0%,rgba(23,98,59,1) 4%,rgba(22,97,56,1) 5%,rgba(25,97,57,1) 7%,rgba(23,100,58,1) 9%,rgba(24,99,56,1) 12%,rgba(28,101,58,1) 13%,rgba(26,101,58,1) 15%,rgba(29,102,57,1) 15%,rgba(26,102,56,1) 16%,rgba(29,102,57,1) 16%,rgba(31,102,58,1) 20%,rgba(37,109,59,1) 31%,rgba(36,109,56,1) 32%,rgba(40,110,58,1) 32%,rgba(39,112,57,1) 37%,rgba(43,113,59,1) 38%,rgba(42,113,57,1) 39%,rgba(48,117,60,1) 45%,rgba(49,119,57,1) 50%,rgba(54,123,60,1) 54%,rgba(65,131,59,1) 71%,rgba(67,133,61,1) 72%,rgba(70,134,60,1) 76%,rgba(68,135,58,1) 77%,rgba(71,135,61,1) 77%,rgba(80,144,60,1) 100%); /* Chrome10+,Safari5.1+ */
-				background: -o-linear-gradient(top,  rgba(21,96,57,1) 0%,rgba(23,98,59,1) 4%,rgba(22,97,56,1) 5%,rgba(25,97,57,1) 7%,rgba(23,100,58,1) 9%,rgba(24,99,56,1) 12%,rgba(28,101,58,1) 13%,rgba(26,101,58,1) 15%,rgba(29,102,57,1) 15%,rgba(26,102,56,1) 16%,rgba(29,102,57,1) 16%,rgba(31,102,58,1) 20%,rgba(37,109,59,1) 31%,rgba(36,109,56,1) 32%,rgba(40,110,58,1) 32%,rgba(39,112,57,1) 37%,rgba(43,113,59,1) 38%,rgba(42,113,57,1) 39%,rgba(48,117,60,1) 45%,rgba(49,119,57,1) 50%,rgba(54,123,60,1) 54%,rgba(65,131,59,1) 71%,rgba(67,133,61,1) 72%,rgba(70,134,60,1) 76%,rgba(68,135,58,1) 77%,rgba(71,135,61,1) 77%,rgba(80,144,60,1) 100%); /* Opera 11.10+ */
-				background: -ms-linear-gradient(top,  rgba(21,96,57,1) 0%,rgba(23,98,59,1) 4%,rgba(22,97,56,1) 5%,rgba(25,97,57,1) 7%,rgba(23,100,58,1) 9%,rgba(24,99,56,1) 12%,rgba(28,101,58,1) 13%,rgba(26,101,58,1) 15%,rgba(29,102,57,1) 15%,rgba(26,102,56,1) 16%,rgba(29,102,57,1) 16%,rgba(31,102,58,1) 20%,rgba(37,109,59,1) 31%,rgba(36,109,56,1) 32%,rgba(40,110,58,1) 32%,rgba(39,112,57,1) 37%,rgba(43,113,59,1) 38%,rgba(42,113,57,1) 39%,rgba(48,117,60,1) 45%,rgba(49,119,57,1) 50%,rgba(54,123,60,1) 54%,rgba(65,131,59,1) 71%,rgba(67,133,61,1) 72%,rgba(70,134,60,1) 76%,rgba(68,135,58,1) 77%,rgba(71,135,61,1) 77%,rgba(80,144,60,1) 100%); /* IE10+ */
-				background: linear-gradient(to bottom,  rgba(21,96,57,1) 0%,rgba(23,98,59,1) 4%,rgba(22,97,56,1) 5%,rgba(25,97,57,1) 7%,rgba(23,100,58,1) 9%,rgba(24,99,56,1) 12%,rgba(28,101,58,1) 13%,rgba(26,101,58,1) 15%,rgba(29,102,57,1) 15%,rgba(26,102,56,1) 16%,rgba(29,102,57,1) 16%,rgba(31,102,58,1) 20%,rgba(37,109,59,1) 31%,rgba(36,109,56,1) 32%,rgba(40,110,58,1) 32%,rgba(39,112,57,1) 37%,rgba(43,113,59,1) 38%,rgba(42,113,57,1) 39%,rgba(48,117,60,1) 45%,rgba(49,119,57,1) 50%,rgba(54,123,60,1) 54%,rgba(65,131,59,1) 71%,rgba(67,133,61,1) 72%,rgba(70,134,60,1) 76%,rgba(68,135,58,1) 77%,rgba(71,135,61,1) 77%,rgba(80,144,60,1) 100%); /* W3C */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#156039', endColorstr='#50903c',GradientType=0 ); /* IE6-9 */
-            }
-            #jqt h1, #jqt h2 {
-				  color: #e7efe8;
-				  text-shadow: none;
-			}
-            /* Custom Tags */
-            div.paragraph {
-				background: #fefefe;
-				font: 14px "Helvetica Neue", Helvetica;
-			    margin: 10px 20px 6px;
-				padding: 10px;
-				border-bottom-left-radius: 8px;
-				border-bottom-right-radius: 8px;
-				border-top-left-radius: 8px;
-				border-top-right-radius: 8px;
-				color: rgb(97, 97, 97);
-				box-shadow: 1px 1px 4px 1px #444;
-			}
-            /* to be tested... */
-            div.toolbar-bottom{
-	            position: absolute;
-				z-index: 2;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				height: 48px;
-				background-color: #222;
-				background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999), color-stop(0.02, #666), color-stop(1, #222));
-				background-image: -moz-linear-gradient(top, #999, #666 2%, #222);
-				background-image: -o-linear-gradient(top, #999, #666 2%, #222);
-				padding: 0;
-				border-top: 1px solid #444;
-			}
-        </style>
-        <script src="cordova-2.7.0.js" type="text/javascript" charset="utf-8"></script>
+<head>
+<meta charset="UTF-8" />
+<title>jQTodo &beta;</title>
+<script src="jqtouch/lib/zepto.min.js" type="text/javascript"
+	charset="utf-8"></script>
+<style type="text/css" media="screen">
+@import "themes/css/jqtouch.css";
+</style>
+<style type="text/css" media="screen">
+div#jqt .toolbar {
+	background: #5eab34; /* Old browsers */
+	background: -moz-linear-gradient(top, #5eab34 0%, #5eab34 50%, #569c30 51%, #569c30
+		100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5eab34),
+		color-stop(50%, #5eab34), color-stop(51%, #569c30),
+		color-stop(100%, #569c30)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #5eab34 0%, #5eab34 50%, #569c30 51%,
+		#569c30 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #5eab34 0%, #5eab34 50%, #569c30 51%, #569c30
+		100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #5eab34 0%, #5eab34 50%, #569c30 51%, #569c30
+		100%); /* IE10+ */
+	background: linear-gradient(to bottom, #5eab34 0%, #5eab34 50%, #569c30 51%, #569c30
+		100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(    startColorstr='#5eab34',
+		endColorstr='#569c30', GradientType=0); /* IE6-9 */
+}
+
+div#jqt .toolbar .btn {
+	-webkit-border-radius: 5px;
+	-webkit-border-image: none;
+	display: block;
+	background: rgba(40, 29, 25, .4) none !important;
+	padding: 6px;
+	border: 1px solid #372823;
+	float: left;
+	color: #fff;
+	-webkit-box-shadow: rgba(255, 255, 255, .4) 0 1px 0;
+	text-decoration: none;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	font-size: 13px;
+	text-shadow: #000 0 -1px 0;
+	display: inline;
+}
+
+div#jqt .btn.active {
+	background-color: rgba(0, 0, 0, .5);
+}
+
+div#jqt ul li  a {
+	color: #373737;
+	text-shadow: none;
+	background-color: #fefefe;
+}
+
+#jqt>.edgetoedge,#jqt>* {
+	background: rgb(21, 96, 57); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(21, 96, 57, 1) 0%,
+		rgba(23, 98, 59, 1) 4%, rgba(22, 97, 56, 1) 5%, rgba(25, 97, 57, 1) 7%,
+		rgba(23, 100, 58, 1) 9%, rgba(24, 99, 56, 1) 12%, rgba(28, 101, 58, 1)
+		13%, rgba(26, 101, 58, 1) 15%, rgba(29, 102, 57, 1) 15%,
+		rgba(26, 102, 56, 1) 16%, rgba(29, 102, 57, 1) 16%,
+		rgba(31, 102, 58, 1) 20%, rgba(37, 109, 59, 1) 31%,
+		rgba(36, 109, 56, 1) 32%, rgba(40, 110, 58, 1) 32%,
+		rgba(39, 112, 57, 1) 37%, rgba(43, 113, 59, 1) 38%,
+		rgba(42, 113, 57, 1) 39%, rgba(48, 117, 60, 1) 45%,
+		rgba(49, 119, 57, 1) 50%, rgba(54, 123, 60, 1) 54%,
+		rgba(65, 131, 59, 1) 71%, rgba(67, 133, 61, 1) 72%,
+		rgba(70, 134, 60, 1) 76%, rgba(68, 135, 58, 1) 77%,
+		rgba(71, 135, 61, 1) 77%, rgba(80, 144, 60, 1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(21,
+		96, 57, 1)), color-stop(4%, rgba(23, 98, 59, 1)),
+		color-stop(5%, rgba(22, 97, 56, 1)),
+		color-stop(7%, rgba(25, 97, 57, 1)),
+		color-stop(9%, rgba(23, 100, 58, 1)),
+		color-stop(12%, rgba(24, 99, 56, 1)),
+		color-stop(13%, rgba(28, 101, 58, 1)),
+		color-stop(15%, rgba(26, 101, 58, 1)),
+		color-stop(15%, rgba(29, 102, 57, 1)),
+		color-stop(16%, rgba(26, 102, 56, 1)),
+		color-stop(16%, rgba(29, 102, 57, 1)),
+		color-stop(20%, rgba(31, 102, 58, 1)),
+		color-stop(31%, rgba(37, 109, 59, 1)),
+		color-stop(32%, rgba(36, 109, 56, 1)),
+		color-stop(32%, rgba(40, 110, 58, 1)),
+		color-stop(37%, rgba(39, 112, 57, 1)),
+		color-stop(38%, rgba(43, 113, 59, 1)),
+		color-stop(39%, rgba(42, 113, 57, 1)),
+		color-stop(45%, rgba(48, 117, 60, 1)),
+		color-stop(50%, rgba(49, 119, 57, 1)),
+		color-stop(54%, rgba(54, 123, 60, 1)),
+		color-stop(71%, rgba(65, 131, 59, 1)),
+		color-stop(72%, rgba(67, 133, 61, 1)),
+		color-stop(76%, rgba(70, 134, 60, 1)),
+		color-stop(77%, rgba(68, 135, 58, 1)),
+		color-stop(77%, rgba(71, 135, 61, 1)),
+		color-stop(100%, rgba(80, 144, 60, 1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(21, 96, 57, 1) 0%,
+		rgba(23, 98, 59, 1) 4%, rgba(22, 97, 56, 1) 5%, rgba(25, 97, 57, 1) 7%,
+		rgba(23, 100, 58, 1) 9%, rgba(24, 99, 56, 1) 12%, rgba(28, 101, 58, 1)
+		13%, rgba(26, 101, 58, 1) 15%, rgba(29, 102, 57, 1) 15%,
+		rgba(26, 102, 56, 1) 16%, rgba(29, 102, 57, 1) 16%,
+		rgba(31, 102, 58, 1) 20%, rgba(37, 109, 59, 1) 31%,
+		rgba(36, 109, 56, 1) 32%, rgba(40, 110, 58, 1) 32%,
+		rgba(39, 112, 57, 1) 37%, rgba(43, 113, 59, 1) 38%,
+		rgba(42, 113, 57, 1) 39%, rgba(48, 117, 60, 1) 45%,
+		rgba(49, 119, 57, 1) 50%, rgba(54, 123, 60, 1) 54%,
+		rgba(65, 131, 59, 1) 71%, rgba(67, 133, 61, 1) 72%,
+		rgba(70, 134, 60, 1) 76%, rgba(68, 135, 58, 1) 77%,
+		rgba(71, 135, 61, 1) 77%, rgba(80, 144, 60, 1) 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(21, 96, 57, 1) 0%,
+		rgba(23, 98, 59, 1) 4%, rgba(22, 97, 56, 1) 5%, rgba(25, 97, 57, 1) 7%,
+		rgba(23, 100, 58, 1) 9%, rgba(24, 99, 56, 1) 12%, rgba(28, 101, 58, 1)
+		13%, rgba(26, 101, 58, 1) 15%, rgba(29, 102, 57, 1) 15%,
+		rgba(26, 102, 56, 1) 16%, rgba(29, 102, 57, 1) 16%,
+		rgba(31, 102, 58, 1) 20%, rgba(37, 109, 59, 1) 31%,
+		rgba(36, 109, 56, 1) 32%, rgba(40, 110, 58, 1) 32%,
+		rgba(39, 112, 57, 1) 37%, rgba(43, 113, 59, 1) 38%,
+		rgba(42, 113, 57, 1) 39%, rgba(48, 117, 60, 1) 45%,
+		rgba(49, 119, 57, 1) 50%, rgba(54, 123, 60, 1) 54%,
+		rgba(65, 131, 59, 1) 71%, rgba(67, 133, 61, 1) 72%,
+		rgba(70, 134, 60, 1) 76%, rgba(68, 135, 58, 1) 77%,
+		rgba(71, 135, 61, 1) 77%, rgba(80, 144, 60, 1) 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(21, 96, 57, 1) 0%,
+		rgba(23, 98, 59, 1) 4%, rgba(22, 97, 56, 1) 5%, rgba(25, 97, 57, 1) 7%,
+		rgba(23, 100, 58, 1) 9%, rgba(24, 99, 56, 1) 12%, rgba(28, 101, 58, 1)
+		13%, rgba(26, 101, 58, 1) 15%, rgba(29, 102, 57, 1) 15%,
+		rgba(26, 102, 56, 1) 16%, rgba(29, 102, 57, 1) 16%,
+		rgba(31, 102, 58, 1) 20%, rgba(37, 109, 59, 1) 31%,
+		rgba(36, 109, 56, 1) 32%, rgba(40, 110, 58, 1) 32%,
+		rgba(39, 112, 57, 1) 37%, rgba(43, 113, 59, 1) 38%,
+		rgba(42, 113, 57, 1) 39%, rgba(48, 117, 60, 1) 45%,
+		rgba(49, 119, 57, 1) 50%, rgba(54, 123, 60, 1) 54%,
+		rgba(65, 131, 59, 1) 71%, rgba(67, 133, 61, 1) 72%,
+		rgba(70, 134, 60, 1) 76%, rgba(68, 135, 58, 1) 77%,
+		rgba(71, 135, 61, 1) 77%, rgba(80, 144, 60, 1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(21, 96, 57, 1) 0%,
+		rgba(23, 98, 59, 1) 4%, rgba(22, 97, 56, 1) 5%, rgba(25, 97, 57, 1) 7%,
+		rgba(23, 100, 58, 1) 9%, rgba(24, 99, 56, 1) 12%, rgba(28, 101, 58, 1)
+		13%, rgba(26, 101, 58, 1) 15%, rgba(29, 102, 57, 1) 15%,
+		rgba(26, 102, 56, 1) 16%, rgba(29, 102, 57, 1) 16%,
+		rgba(31, 102, 58, 1) 20%, rgba(37, 109, 59, 1) 31%,
+		rgba(36, 109, 56, 1) 32%, rgba(40, 110, 58, 1) 32%,
+		rgba(39, 112, 57, 1) 37%, rgba(43, 113, 59, 1) 38%,
+		rgba(42, 113, 57, 1) 39%, rgba(48, 117, 60, 1) 45%,
+		rgba(49, 119, 57, 1) 50%, rgba(54, 123, 60, 1) 54%,
+		rgba(65, 131, 59, 1) 71%, rgba(67, 133, 61, 1) 72%,
+		rgba(70, 134, 60, 1) 76%, rgba(68, 135, 58, 1) 77%,
+		rgba(71, 135, 61, 1) 77%, rgba(80, 144, 60, 1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(    startColorstr='#156039',
+		endColorstr='#50903c', GradientType=0); /* IE6-9 */
+}
+
+#jqt h1,#jqt h2 {
+	color: #e7efe8;
+	text-shadow: none;
+}
+/* Custom Tags */
+div.paragraph {
+	background: #fefefe;
+	font: 14px "Helvetica Neue", Helvetica;
+	margin: 10px 20px 6px;
+	padding: 10px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	color: rgb(97, 97, 97);
+	box-shadow: 1px 1px 4px 1px #444;
+}
+/* to be tested... */
+div.toolbar-bottom {
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 48px;
+	background-color: #222;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #999),
+		color-stop(0.02, #666), color-stop(1, #222));
+	background-image: -moz-linear-gradient(top, #999, #666 2%, #222);
+	background-image: -o-linear-gradient(top, #999, #666 2%, #222);
+	padding: 0;
+	border-top: 1px solid #444;
+}
+</style>
+<script src="cordova-2.7.0.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="jqtouch/jqtouch.min.js" type="text/javascript"
+	charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+	var jQT = $.jQTouch({
+		icon : 'icon.png',
+		startupScreen : 'startup.png'
+	});
+
+	document.addEventListener("deviceready", onDeviceReady, false);
+
+	function onDeviceReady() {
+		checkConnection();
+
+		var db = window.openDatabase("PWDB", "1.0", "Peppers World DB", 1000000);
+        db.transaction(populateDB, errorCB, successCB);
         
-        <script src="jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+		
+        /* $.ajax({
+			url : 'http://peppersworld.altervista.org/get_data.php?callback=?',
+			success : function(data) {
+				$.each(data, function(key, val) {
+					if (key == "status") {
+						if (val == "success") {
+							getSuccess = true;
+						} else {
+							getSuccess = false;
+							alert("Error getting data.");
+						}
+					} else {
+						if (getSuccess == true) {
+							//alert(val);
+							if(key=="response"){
+								var items = val;
+								pWDB.transaction(function(tx) 
+								{
+									tx.executeSql('DROP TABLE IF EXISTS regions');
+								});
+								alert("drop");
+								pWDB.transaction(function(tx) 
+								{
+									tx.executeSql('CREATE TABLE IF NOT EXISTS regions (region_id unique, region_name)');
+								});
+								alert("table created");
+								for (i=0; i<items.length; i++){
+									var region = items[i];
+									var regionArray = region.split("|");
+									pWDB.transaction(function(tx) 
+									{
+										tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES ('+regionArray[0]+', \''+regionArray[1]+'\')', errorCB, successDB);	
+									});
+									alert("inserted: "+regionArray[0]+", "+regionArray[1]);
+								}	      
+							}
+						}
+					}
+				});
+				pWDB.transaction(queryDB, errorCB);
+			}
+		}); */
+		
+		
+		
 
-        <script type="text/javascript" charset="utf-8">
-            var jQT = $.jQTouch({
-                icon: 'icon.png',
-                startupScreen: 'startup.png'
-            });
-            
-            document.addEventListener("deviceready", onDeviceReady, false);
-            
-            function onDeviceReady() {
-            	checkConnection();
-            	
-            	var pWDB = window.openDatabase("PWDB", "1.0", "Peppers World DB", 1000000);
-            	pWDB.transaction(populateDB, errorDB, successDB);
-            	
-            	$.getJSON('http://peppersworld.altervista.org/get_data.php', function(remoteData){
-            		  console.log(remoteData)
-            		})
-            		
-            	
-            }
-            
-            function checkConnection() {
-            	var networkState = navigator.network.connection.type;
-            	var states = {};
-            	states[Connection.UNKNOWN] = 'Unknown connection';
-            	states[Connection.ETHERNET] = 'Ethernet connection';
-            	states[Connection.WIFI] = 'WiFi connection';
-            	states[Connection.CELL_2G] = 'Cell 2G connection';
-            	states[Connection.CELL_3G] = 'Cell 3G connection';
-            	states[Connection.CELL_4G] = 'Cell 4G connection';
-            	states[Connection.NONE] = 'No network connection';
-            	alert('Connection type: ' + states[networkState]);
-            }
-            
-            function populateDB(tx) {
-            	tx.executeSql('DROP TABLE IF EXISTS regions');
-            	tx.executeSql('CREATE TABLE IF NOT EXISTS regions (region_id unique, region_name)');
-            	tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES (1, "North America")');
-            	tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES (2, "South America")');
-            	tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES (3, "Europe")');
-            }
-            
-            function errorDB(err) {
-            	alert("Error processing SQL: "+err.code);
-            }
+	}
 
-            function successDB() {
-            	alert("Processing SQL successfully.");
-            	/* var pWDB = window.openDatabase("PWDB", "1.0", "Peppers World DB", 1000000);
-            	pWDB.transaction(queryDB, errorDB); */
-            }
-            
-            /* function queryDB(tx) {
-           		tx.executeSql('SELECT * FROM regions', [], querySuccess, errorCB);
-           	} */
-           	// Query the success callback
-           	//
-           	function querySuccess(tx, results) {
-	           	//first get the number of rows in the result set
-	           	var len = results.rows.length;
-	           	var status = document.getElementById("status");
-	           	var string = "Rows: " +len+"<br/>";
-	           	for (var i=0;i<len;i++){
-	           	string += results.rows.item(i).name + "<br/>";
-	           	}
-	           	//status.innerHTML = string;
-	           	alert(string);
-           	}
-            
-        </script>
-    </head>
-    <body>
-        <div id="jqt">
-            <div id="home" selected="true" class="edgetoedge form">
-                <div class="toolbar">
-                    <h1>Peppers World</h1>
-                    <a href="#about" class="btn slideup">About</a>
-                </div>
-                 <div class="toolbar-bottom">
-                	<h1>Peppers World Bottom Toolbar</h1>
-                </div> 
-                <div class="scroll">
-                	<div id="status"></div>
-                	<h2>Find By Region</h2>
-                	<ul class="rounded">
-                		<li class="arrow"><a href="#northAmerica">North America</a></li>
-                		<li class="arrow"><a href="#southAmerica">South America</a></li>
-                		<li class="arrow"><a href="#europe">Europe</a></li>
-                		<li class="arrow"><a href="#asia">Asia</a></li>
-                		<li class="arrow"><a href="#africa">Africa</a></li>
-                		<li class="arrow"><a href="#australia">Australia</a></li>
-                	</ul>
-                	
-                	<h2>Scoville Scale</h2>
-                	<ul class="rounded">
-                		<li class="arrow"><a href="#scovilleScale">Find By Scoville Scale</a></li>
-                	</ul>
-                	
-                	<h2>Grow Peppers</h2>
-                	<ul class="rounded">
-                		<li class="arrow"><a href="#growPeppers"><img width="70" src="watering_can.png" />&nbsp;How To Grow Peppers</a></li>
-                	</ul>
-                </div>
-                
-            </div>
-            
-            <!-- NORTH AMERICA PAGE -->
-            <div id="northAmerica">
-            	<div class="toolbar">
-        	        <h1>North Amer.</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>North America</h2>
-                	<ul class="rounded">
-                		<li class="arrow">test pepper</li>
-                	</ul>
-                </div>
-            </div>
-            
-            <!-- SOUTH AMERICA PAGE -->
-            <div id="southAmerica">
-            	<div class="toolbar">
-        	        <h1>South Amer.</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>South America</h2>
-                	<ul class="rounded">
-                		<li class="arrow">test pepper</li>
-                	</ul>
-                </div>
-            </div>
-            
-            <!-- EUROPE PAGE -->
-            <div id="europe">
-            	<div class="toolbar">
-        	        <h1>Europe</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>Europe</h2>
-                	<ul class="rounded">
-                		<li class="arrow">test pepper</li>
-                	</ul>
-                </div>
-            </div>
-            
-            <!-- ASIA PAGE -->
-            <div id="asia">
-            	<div class="toolbar">
-        	        <h1>Asia</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>Asia</h2>
-                	<ul class="rounded">
-                		<li class="arrow">test pepper</li>
-                	</ul>
-                </div>
-            </div>
-            
-            <!-- AFRICA PAGE -->
-            <div id="africa">
-            	<div class="toolbar">
-        	        <h1>Africa</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>Africa</h2>
-                	<ul class="rounded">
-                		<li class="arrow">test pepper</li>
-                	</ul>
-                </div>
-            </div>
-                 
-            <!-- AUSTRALIA PAGE -->
-            <div id="australia">
-            	<div class="toolbar">
-        	        <h1>Australia</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>Australia</h2>
-                	<ul class="rounded">
-                		<li class="arrow">test pepper</li>
-                	</ul>
-                </div>
-            </div>
-            
-            <!-- SCOVILLE SCALE PAGE -->
-            <div id="scovilleScale">
-            	<div class="toolbar">
-        	        <h1>Scoville Scale</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<h2>Find By Scoville Scale</h2>
-                	<ul class="rounded">
-                		<li class="arrow">1.000.000</li>
-                	</ul>
-                </div>
-            </div>
-            
-            <!-- GROW PEPPERS PAGE -->
-            <div id="growPeppers">
-            	<div class="toolbar">
-        	        <h1>Grow Peppers</h1>
-    	            <a class="back" href="#home">Back</a>
-                </div>
-                <div class="scroll">
-                	<div class="paragraph">Pepper choices—ranging from crispy sweet to fiery hot, from big and blocky to long and skinny—increase each year. This native American vegetable is second only to tomatoes as a garden favorite, and it needs much the same care. Peppers are also ideal for spot planting around the garden. The brilliant colors of the mature fruit are especially attractive in flower beds and in container plantings. New varieties of bell peppers are released every year, in mature colors ranging from bright red to orange to white, purple, and nearly black. If you've had past problems with diseases such as tobacco mosaic virus or bacterial spot, choose disease-resistant varieties.</div>
-                	<h2>Planting</h2>
-					<div class="paragraph">Choose a site with full sun for your pepper plot. Don't plant peppers where tomatoes or eggplants grew previously, because all three are members of the nightshade family and are subject to similar diseases. Make sure the soil drains well; standing water encourages root rot.
-					Garden centers offer a good variety of transplants, but the choices are greater when you grow peppers from seed. Pepper roots don't like to be disturbed, so plant them indoors in peat pots two months before the last frost date, sowing three seeds to a pot. Maintain the soil temperature at 75°F, and keep the seedlings moist, but not wet. Provide at least 5 hours of strong sunlight a day, or ideally, keep the plants under lights for 12 or more hours daily. Once the seedlings are 2 to 3 inches tall, thin them by leaving the strongest plant in each pot and cutting the others off at soil level.
-					Seedlings are ready for the garden when they are 4 to 6 inches tall. Before moving the young plants to the garden, harden them off for about a week. Peppers are very susceptible to transplant "shock," which can interrupt growth for weeks. To avoid shocking the plants, make sure the soil temperature is at least 60°F before transplanting; this usually occurs 2 to 3 weeks after the last frost. Transplant on a cloudy day or in the evening to reduce the danger of sun scorch; if this is not possible, provide temporary shade for the transplanted seedlings.
-					When buying transplants, look for ones with strong stems and dark green leaves. Pass up those that already have tiny fruits on them, because such plants won't produce well. Peppers take at least 2 months from the time the plants are set out to the time they produce fruit, so short-season growers should select early-maturing cultivars.
-					Space transplants about 1½ feet apart in rows at least 2 feet apart, keeping in mind that most hot-pepper cultivars need less room than sweet ones. If the plot is exposed to winds, stake the plants, but put these supports in place before transplanting the seedlings to keep from damaging roots. To deter cutworms, place a cardboard collar around each stem, pushing it at least an inch into the ground. If the weather turns chilly and rainy, protect young plants with hotcaps.</div>
-					<h2>Growing guidelines</h2>
-					<div class="paragraph">Evenly moist soil is essential to good growth, so spread a thick but light mulch, such as straw or grass clippings, around the plants. Water deeply during dry spells to encourage deep root development. Lack of water can produce bitter-tasting peppers. To avoid damaging the roots, gently pull any invading weeds by hand.
-					Although peppers are tropical plants, temperatures over 90°F often cause blossoms to drop and plants to wilt. To avoid this problem, plan your garden so taller plants will shade the peppers during the hottest part of the day. If you plant peppers in properly prepared soil, fertilizing usually isn't necessary. Pale leaves and slow growth, however, are a sign that the plants need a feeding of liquid fertilizer, such as fish emulsion or compost tea. Learn more about compost tea.</div>
-					<h2>Problems</h2>
-					<div class="paragraph">Since sprays of ground-up hot peppers can deter insects, it's logical that pests don't usually bother pepper plants. There are, however, a few exceptions. The pepper weevil, a 1/8-inch-long, brass-colored beetle with a brown or black snout, and its ¼-inch-long larva, a white worm with a beige head, chew holes in blossoms and buds, causing misshapen and discolored fruits. It's a common pest across the southern United States. Prevent damage by keeping the garden free of crop debris. Hand pick any weevils you spot on the plants.
-					Other occasional pests include aphids, Colorado potato beetles, flea beetles, hornworms, and cutworms. See the Top Ten Garden Pests page for information on these insect pests and how to control them.
-					Crop rotation and resistant cultivars are your best defense against most pepper diseases. Here are some common diseases to watch for:
-					Anthracnose infection causes dark, sunken, soft, and watery spots on fruits.
-					Bacterial spot appears as small, yellow-green raised spots on young leaves and dark spots with light-colored centers on older leaves.
-					Early blight appears as dark spots on leaves and stems; infected leaves eventually die.
-					Verticillium wilt appears first on lower leaves, which turn yellow and wilt.
-					Mosaic—the most serious disease—is a viral infection that mottles the leaves of young plants with dark and light splotches and eventually causes them to curl and wrinkle. Later on, mosaic can cause fruits to become bumpy and bitter.
-					See the Pepper Problems for more information on some of these diseases and control measures.</div>
-					<h2>Harvesting</h2>
-					<div class="paragraph">Most sweet peppers become even sweeter when mature as they turn from green to bright red, yellow, or orange—or even brown or purple. Mature hot peppers offer an even greater variety of rainbow colors, often on the same plant, and achieve their best flavor when fully grown. Early in the season, however, it's best to harvest peppers before they ripen to encourage the plant to keep bearing; a mature fruit can signal a plant to stop production.
-					Always cut (don't pull) peppers from the plant. Pick all the fruit when a frost is predicted, or pull plants up by the roots and hang them in a dry, cool place indoors for the fruit to ripen more fully. To preserve, freeze peppers (without blanching), or dry hot types.</div>
-                </div>
-            </div>
-            
-            <!-- ABOUT PAGE -->
-            <div id="about">
-                <form>
-                    <div class="toolbar">
-                        <h1>About Peppers World</h1>
-                        <a class="back" href="#home">Home</a>
-                    </div>
-                    <textarea>Fatto dal pero</textarea>
-                </form>
-            </div>
-            
-        </div>
-    </body>
+	function checkConnection() {
+		var networkState = navigator.network.connection.type;
+		var states = {};
+		states[Connection.UNKNOWN] = 'Unknown connection';
+		states[Connection.ETHERNET] = 'Ethernet connection';
+		states[Connection.WIFI] = 'WiFi connection';
+		states[Connection.CELL_2G] = 'Cell 2G connection';
+		states[Connection.CELL_3G] = 'Cell 3G connection';
+		states[Connection.CELL_4G] = 'Cell 4G connection';
+		states[Connection.NONE] = 'No network connection';
+		alert('Connection type: ' + states[networkState]);
+	}
+	
+	function populateDB(tx) {
+		tx.executeSql('DROP TABLE IF EXISTS regions');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS regions (region_id unique, region_name)');
+		$.ajax({
+			url : 'http://peppersworld.altervista.org/get_data.php?callback=?',
+			success : function(data) {
+				$.each(data, function(key, val) {
+					if (key == "status") {
+						if (val == "success") {
+							getSuccess = true;
+						} else {
+							getSuccess = false;
+							alert("Error getting data.");
+						}
+					} else {
+						if (getSuccess == true) {
+							//alert(val);
+							if(key=="response"){
+								var items = val;
+								for (i=0; i<items.length; i++){
+									var region = items[i];
+									var regionArray = region.split("|");
+									tx.executeSql('INSERT INTO regions (region_id, region_name) VALUES ('+regionArray[0]+', \''+regionArray[1]+'\')');	
+								}	     
+								
+							}
+						}
+					}
+				});
+			}
+		});
+	}
+
+	function errorCB(tx, err) {
+        alert("Error processing SQL: "+err);
+    }
+
+	function successCB() {
+        alert("success!");
+        db = window.openDatabase("PWDB", "1.0", "Peppers World DB", 1000000);
+        db.transaction(queryDB, errorCB);
+    }
+
+	
+	function queryDB(tx) {
+		alert("Select");
+        tx.executeSql("SELECT region_id, region_name FROM regions", [], querySuccess, errorCB);
+    }
+	
+	// Query the success callback
+	//
+	function querySuccess(tx, results) {
+		var len = results.rows.length;
+		alert("returned: "+len+" items");
+		var str = "";
+		for ( var i = 0; i < len; i++) {
+			rId = results.rows.item(i).region_id;
+			rName = results.rows.item(i).region_name;
+			str += "<li class=\"arrow\"><a href=\"#"+rId+"\">"+rName+"</a></li>";
+		}
+		$("ul#regions").append(str);
+	}
+</script>
+</head>
+<body>
+	<div id="jqt">
+		<div id="home" selected="true" class="edgetoedge form">
+			<div class="toolbar">
+				<h1>Peppers World</h1>
+				<a href="#about" class="btn slideup">About</a>
+			</div>
+			<div class="toolbar-bottom">
+				<h1>Peppers World Bottom Toolbar</h1>
+			</div>
+			<div class="scroll">
+				<div id="status"></div>
+				<h2>Find By Region</h2>
+				<ul id="regions" class="rounded">
+					<!-- <li class="arrow"><a href="#northAmerica">North America</a></li>
+					<li class="arrow"><a href="#southAmerica">South America</a></li>
+					<li class="arrow"><a href="#europe">Europe</a></li>
+					<li class="arrow"><a href="#asia">Asia</a></li>
+					<li class="arrow"><a href="#africa">Africa</a></li>
+					<li class="arrow"><a href="#australia">Australia</a></li> -->
+				</ul>
+
+				<h2>Scoville Scale</h2>
+				<ul class="rounded">
+					<li class="arrow"><a href="#scovilleScale">Find By
+							Scoville Scale</a></li>
+				</ul>
+
+				<h2>Grow Peppers</h2>
+				<ul class="rounded">
+					<li class="arrow"><a href="#growPeppers"><img width="70"
+							src="watering_can.png" />&nbsp;How To Grow Peppers</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- NORTH AMERICA PAGE -->
+		<div id="northAmerica">
+			<div class="toolbar">
+				<h1>North Amer.</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>North America</h2>
+				<ul class="rounded">
+					<li class="arrow">test pepper</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SOUTH AMERICA PAGE -->
+		<div id="southAmerica">
+			<div class="toolbar">
+				<h1>South Amer.</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>South America</h2>
+				<ul class="rounded">
+					<li class="arrow">test pepper</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- EUROPE PAGE -->
+		<div id="europe">
+			<div class="toolbar">
+				<h1>Europe</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>Europe</h2>
+				<ul class="rounded">
+					<li class="arrow">test pepper</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- ASIA PAGE -->
+		<div id="asia">
+			<div class="toolbar">
+				<h1>Asia</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>Asia</h2>
+				<ul class="rounded">
+					<li class="arrow">test pepper</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- AFRICA PAGE -->
+		<div id="africa">
+			<div class="toolbar">
+				<h1>Africa</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>Africa</h2>
+				<ul class="rounded">
+					<li class="arrow">test pepper</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- AUSTRALIA PAGE -->
+		<div id="australia">
+			<div class="toolbar">
+				<h1>Australia</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>Australia</h2>
+				<ul class="rounded">
+					<li class="arrow">test pepper</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SCOVILLE SCALE PAGE -->
+		<div id="scovilleScale">
+			<div class="toolbar">
+				<h1>Scoville Scale</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<h2>Find By Scoville Scale</h2>
+				<ul class="rounded">
+					<li class="arrow">1.000.000</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- GROW PEPPERS PAGE -->
+		<div id="growPeppers">
+			<div class="toolbar">
+				<h1>Grow Peppers</h1>
+				<a class="back" href="#home">Back</a>
+			</div>
+			<div class="scroll">
+				<div class="paragraph">Pepper choices—ranging from crispy
+					sweet to fiery hot, from big and blocky to long and skinny—increase
+					each year. This native American vegetable is second only to
+					tomatoes as a garden favorite, and it needs much the same care.
+					Peppers are also ideal for spot planting around the garden. The
+					brilliant colors of the mature fruit are especially attractive in
+					flower beds and in container plantings. New varieties of bell
+					peppers are released every year, in mature colors ranging from
+					bright red to orange to white, purple, and nearly black. If you've
+					had past problems with diseases such as tobacco mosaic virus or
+					bacterial spot, choose disease-resistant varieties.</div>
+				<h2>Planting</h2>
+				<div class="paragraph">Choose a site with full sun for your
+					pepper plot. Don't plant peppers where tomatoes or eggplants grew
+					previously, because all three are members of the nightshade family
+					and are subject to similar diseases. Make sure the soil drains
+					well; standing water encourages root rot. Garden centers offer a
+					good variety of transplants, but the choices are greater when you
+					grow peppers from seed. Pepper roots don't like to be disturbed, so
+					plant them indoors in peat pots two months before the last frost
+					date, sowing three seeds to a pot. Maintain the soil temperature at
+					75°F, and keep the seedlings moist, but not wet. Provide at least 5
+					hours of strong sunlight a day, or ideally, keep the plants under
+					lights for 12 or more hours daily. Once the seedlings are 2 to 3
+					inches tall, thin them by leaving the strongest plant in each pot
+					and cutting the others off at soil level. Seedlings are ready for
+					the garden when they are 4 to 6 inches tall. Before moving the
+					young plants to the garden, harden them off for about a week.
+					Peppers are very susceptible to transplant "shock," which can
+					interrupt growth for weeks. To avoid shocking the plants, make sure
+					the soil temperature is at least 60°F before transplanting; this
+					usually occurs 2 to 3 weeks after the last frost. Transplant on a
+					cloudy day or in the evening to reduce the danger of sun scorch; if
+					this is not possible, provide temporary shade for the transplanted
+					seedlings. When buying transplants, look for ones with strong stems
+					and dark green leaves. Pass up those that already have tiny fruits
+					on them, because such plants won't produce well. Peppers take at
+					least 2 months from the time the plants are set out to the time
+					they produce fruit, so short-season growers should select
+					early-maturing cultivars. Space transplants about 1½ feet apart in
+					rows at least 2 feet apart, keeping in mind that most hot-pepper
+					cultivars need less room than sweet ones. If the plot is exposed to
+					winds, stake the plants, but put these supports in place before
+					transplanting the seedlings to keep from damaging roots. To deter
+					cutworms, place a cardboard collar around each stem, pushing it at
+					least an inch into the ground. If the weather turns chilly and
+					rainy, protect young plants with hotcaps.</div>
+				<h2>Growing guidelines</h2>
+				<div class="paragraph">Evenly moist soil is essential to good
+					growth, so spread a thick but light mulch, such as straw or grass
+					clippings, around the plants. Water deeply during dry spells to
+					encourage deep root development. Lack of water can produce
+					bitter-tasting peppers. To avoid damaging the roots, gently pull
+					any invading weeds by hand. Although peppers are tropical plants,
+					temperatures over 90°F often cause blossoms to drop and plants to
+					wilt. To avoid this problem, plan your garden so taller plants will
+					shade the peppers during the hottest part of the day. If you plant
+					peppers in properly prepared soil, fertilizing usually isn't
+					necessary. Pale leaves and slow growth, however, are a sign that
+					the plants need a feeding of liquid fertilizer, such as fish
+					emulsion or compost tea. Learn more about compost tea.</div>
+				<h2>Problems</h2>
+				<div class="paragraph">Since sprays of ground-up hot peppers
+					can deter insects, it's logical that pests don't usually bother
+					pepper plants. There are, however, a few exceptions. The pepper
+					weevil, a 1/8-inch-long, brass-colored beetle with a brown or black
+					snout, and its ¼-inch-long larva, a white worm with a beige head,
+					chew holes in blossoms and buds, causing misshapen and discolored
+					fruits. It's a common pest across the southern United States.
+					Prevent damage by keeping the garden free of crop debris. Hand pick
+					any weevils you spot on the plants. Other occasional pests include
+					aphids, Colorado potato beetles, flea beetles, hornworms, and
+					cutworms. See the Top Ten Garden Pests page for information on
+					these insect pests and how to control them. Crop rotation and
+					resistant cultivars are your best defense against most pepper
+					diseases. Here are some common diseases to watch for: Anthracnose
+					infection causes dark, sunken, soft, and watery spots on fruits.
+					Bacterial spot appears as small, yellow-green raised spots on young
+					leaves and dark spots with light-colored centers on older leaves.
+					Early blight appears as dark spots on leaves and stems; infected
+					leaves eventually die. Verticillium wilt appears first on lower
+					leaves, which turn yellow and wilt. Mosaic—the most serious
+					disease—is a viral infection that mottles the leaves of young
+					plants with dark and light splotches and eventually causes them to
+					curl and wrinkle. Later on, mosaic can cause fruits to become bumpy
+					and bitter. See the Pepper Problems for more information on some of
+					these diseases and control measures.</div>
+				<h2>Harvesting</h2>
+				<div class="paragraph">Most sweet peppers become even sweeter
+					when mature as they turn from green to bright red, yellow, or
+					orange—or even brown or purple. Mature hot peppers offer an even
+					greater variety of rainbow colors, often on the same plant, and
+					achieve their best flavor when fully grown. Early in the season,
+					however, it's best to harvest peppers before they ripen to
+					encourage the plant to keep bearing; a mature fruit can signal a
+					plant to stop production. Always cut (don't pull) peppers from the
+					plant. Pick all the fruit when a frost is predicted, or pull plants
+					up by the roots and hang them in a dry, cool place indoors for the
+					fruit to ripen more fully. To preserve, freeze peppers (without
+					blanching), or dry hot types.</div>
+			</div>
+		</div>
+
+		<!-- ABOUT PAGE -->
+		<div id="about">
+			<form>
+				<div class="toolbar">
+					<h1>About Peppers World</h1>
+					<a class="back" href="#home">Home</a>
+				</div>
+				<textarea>Fatto dal pero</textarea>
+			</form>
+		</div>
+
+	</div>
+</body>
 </html>
