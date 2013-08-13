@@ -3,28 +3,81 @@
 <head>
 <meta charset="UTF-8" />
 <title>PeppersWorld!</title>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<link rel="stylesheet" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
+<script src="jquery/jquery-1.10.2.min.js"></script>
+<script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <script src="cordova.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
-$(document).on('pageinit', function(){
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+	checkConnection();
 	alert("page loaded.");
-	
+	loadRegions();
+}
+
+$(document).on('pageinit', function(){
 	$("li.region").bind('touchstart mousedown', function(){
 	    alert("region clicked.");
-	});
+	});	
 });
+
+function checkConnection() {
+	var networkState = navigator.network.connection.type;
+	var states = {};
+	states[Connection.UNKNOWN] = 'Unknown connection';
+	states[Connection.ETHERNET] = 'Ethernet connection';
+	states[Connection.WIFI] = 'WiFi connection';
+	states[Connection.CELL_2G] = 'Cell 2G connection';
+	states[Connection.CELL_3G] = 'Cell 3G connection';
+	states[Connection.CELL_4G] = 'Cell 4G connection';
+	states[Connection.NONE] = 'No network connection';
+	alert('Connection type: ' + states[networkState]);
+}
+function loadRegions(){
+	$.mobile.loading( "show", {
+        text: "Loading data...",
+        textVisible: "true",
+        theme: "a",
+        textonly: "false"
+	});
+	$.getJSON('http://peppersworld.altervista.org/get_data.php?req=r&callback=?', function(data) {
+	  var items = [];
+	  var str = "";
+	  $.each(data, function(key, val) {
+		  if (key == "status") {
+			  if (val == "success") {
+				  getSuccess = true;
+			  }
+			  else {
+				  getSuccess = false;
+				  alert("Error getting data.");
+			  }
+		  }
+		  else {
+			  if (getSuccess == true) {
+				  if(key=="response"){
+					  items = val;
+					  
+					  for (var i=0;i<items.length;i++)
+					  { 
+						  var region = [];
+						  region = items[i];
+						  //alert("valore: "+region["region_id"]+"|"+region["region_name"]);
+						  str += "<li class=\"region\"><a href=\"#\">"+region["region_name"]+"</a></li>";
+					  }
+				  }
+			  }
+		  }
+	  });
+	  $("ul#regions").append(str).listview('refresh');
+	  $.mobile.loading( "hide" );
+	});
+}
 </script>
 </head>
 <body>
-	<ul data-role="listview" data-filter="true" data-filter-placeholder="Cerca..." data-inset="true">
-    <li class="region"><a href="#">Europe</a></li>
-    <li class="region"><a href="#">Banana</a></li>
-    <li class="region"><a href="#">Cherry</a></li>
-    <li class="region"><a href="#">Cranberry</a></li>
-    <li class="region"><a href="#">Grape</a></li>
-    <li class="region"><a href="#">Orange</a></li>
-</ul>
+	<ul id="regions" data-role="listview" data-filter="true" data-filter-placeholder="Cerca..." data-inset="true">
+	</ul>
 </body>
 </html>
